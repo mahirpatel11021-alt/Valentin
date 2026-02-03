@@ -1,177 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Diya 💖 Be My Valentine</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<title>Diya 💖 Be My Valentine</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  position: relative;
+  cursor: none; /* hide cursor for sparkle effect */
+}
 
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      max-width: 360px;
-      z-index: 2;
-    }
+/* Card animation */
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  max-width: 380px;
+  z-index: 5;
+  transform: translateY(-100px);
+  opacity: 0;
+  animation: slideIn 1s forwards;
+}
 
-    h1 {
-      color: #ff4d6d;
-      margin-bottom: 20px;
-    }
+@keyframes slideIn {
+  to { transform: translateY(0); opacity: 1; }
+}
 
-    p {
-      color: #555;
-      font-size: 16px;
-      margin: 8px 0;
-    }
+h1 { color: #ff4d6d; margin-bottom: 15px; }
+p { color: #555; font-size: 16px; margin: 8px 0; }
 
-    .buttons {
-      margin-top: 25px;
-      position: relative;
-    }
+.buttons { margin-top: 20px; position: relative; }
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  position: relative;
+  z-index: 6;
+}
+.yes { background: #ff4d6d; color: white; }
+.no { background: #eee; color: #555; }
 
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 25px;
-      border: none;
-      cursor: pointer;
-      margin: 5px;
-      position: relative;
-    }
+.hidden { display: none; }
+.hearts { font-size: 28px; margin-top: 15px; }
 
-    .yes {
-      background: #ff4d6d;
-      color: white;
-      z-index: 3;
-    }
+/* Floating hearts & roses */
+.floating {
+  position: absolute;
+  font-size: 24px;
+  animation: float linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+@keyframes float {
+  from { transform: translateY(100vh) rotate(0deg); }
+  to { transform: translateY(-10vh) rotate(360deg); }
+}
 
-    .no {
-      background: #eee;
-      color: #555;
-      z-index: 3;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .hearts {
-      font-size: 28px;
-      margin-top: 15px;
-    }
-
-    .floating-heart {
-      position: absolute;
-      font-size: 20px;
-      animation: float linear infinite;
-      opacity: 0.8;
-      z-index: 1;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(100vh);
-      }
-      to {
-        transform: translateY(-10vh);
-      }
-    }
-  </style>
+/* Sparkles */
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff, #ff9a9e);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 10;
+}
+</style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>Diya 💕</h1>
-    <p>Roses are red 🌹</p>
-    <p>Distance is rude 😤</p>
-    <p>But somehow you still</p>
-    <p>make my life better every day.</p>
-
-    <p><strong>Will you be my Valentine? 💘</strong></p>
-
-    <div class="buttons">
-      <button class="yes" onclick="sayYes()">YES 😍</button>
-      <button class="no" onmouseover="runAway(this)">No 🤨</button>
-    </div>
-
-    <div id="response" class="hidden">
-      <h2>YAYYY 🥰💖</h2>
-      <p>Best decision ever.<br>I’m so lucky you’re mine, Diya.</p>
-
-      <p style="margin-top: 20px; font-style: italic;">
-        Forever yours,<br>
-        <strong>— Mahir 💕</strong>
-      </p>
-
-      <div class="hearts">💘💖💝💞💗</div>
-    </div>
+<div class="card">
+  <h1>Diya 💕</h1>
+  <!-- optional cute image -->
+  <img src="https://i.imgur.com/6pJYFfN.png" alt="Heart" width="80">
+  <p>Roses are red 🌹</p>
+  <p>Distance is rude 😤</p>
+  <p>But somehow you still</p>
+  <p>make my life better every day.</p>
+  <p><strong>Will you be my Valentine? 💘</strong></p>
+  <div class="buttons">
+    <button class="yes" onclick="sayYes()">YES 😍</button>
+    <button class="no" onmouseover="runAway(this)">No 🤨</button>
   </div>
+  <div id="response" class="hidden">
+    <h2>YAYYY 🥰💖</h2>
+    <p>Best decision ever.<br>I’m so lucky you’re mine, Diya.</p>
+    <p style="margin-top: 20px; font-style: italic;">
+      Forever yours,<br>
+      <strong>— Mahir 💕</strong>
+    </p>
+    <div class="hearts">💘💖💝💞💗</div>
+  </div>
+</div>
 
-  <script>
-    // Continuously floating hearts in background
-    function createBackgroundHearts() {
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement("div");
-        heart.className = "floating-heart";
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
-        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-        document.body.appendChild(heart);
+<script>
+// Background floating hearts & roses
+function createFloating() {
+  const icons = ['💖','💘','🌹','💞','💝'];
+  for(let i=0;i<15;i++){
+    const f = document.createElement('div');
+    f.className='floating';
+    f.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+    f.style.left = Math.random()*100+'vw';
+    f.style.animationDuration = (Math.random()*5+5)+'s';
+    f.style.fontSize = (Math.random()*25+15)+'px';
+    document.body.appendChild(f);
+    setTimeout(()=>{ f.remove(); createFloating(); }, parseFloat(f.style.animationDuration)*1000);
+  }
+}
+createFloating();
 
-        setTimeout(() => {
-          heart.remove();
-          createBackgroundHearts(); // keep hearts floating infinitely
-        }, (parseFloat(heart.style.animationDuration) * 1000));
-      }
-    }
+// NO button runs away
+function runAway(button){
+  const parent = button.parentElement;
+  const x = Math.random() * (parent.offsetWidth - button.offsetWidth);
+  const y = Math.random() * 50;
+  button.style.transform = `translate(${x}px,${y}px)`;
+}
 
-    createBackgroundHearts();
+// YES button triggers heart explosion
+function sayYes(){
+  document.getElementById('response').classList.remove('hidden');
+  createHearts();
+}
 
-    // Runaway NO button
-    function runAway(button) {
-      const parent = button.parentElement;
-      const x = Math.random() * (parent.offsetWidth - button.offsetWidth);
-      const y = Math.random() * 50; // small vertical shift
-      button.style.transform = `translate(${x}px, ${y}px)`;
-    }
+// Heart explosion
+function createHearts(){
+  for(let i=0;i<30;i++){
+    const h = document.createElement('div');
+    h.className='floating';
+    h.innerHTML='💖';
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=(Math.random()*3+3)+'s';
+    h.style.fontSize=(Math.random()*25+15)+'px';
+    document.body.appendChild(h);
+    setTimeout(()=>{ h.remove(); }, parseFloat(h.style.animationDuration)*1000);
+  }
+}
 
-    // YES button click
-    function sayYes() {
-      document.getElementById("response").classList.remove("hidden");
-      createHearts();
-    }
-
-    // Extra floating hearts on YES click
-    function createHearts() {
-      for (let i = 0; i < 25; i++) {
-        const heart = document.createElement("div");
-        heart.className = "floating-heart";
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, (parseFloat(heart.style.animationDuration) * 1000));
-      }
-    }
-  </script>
+// Cursor sparkles
+document.addEventListener('mousemove', e=>{
+  const s = document.createElement('div');
+  s.className='sparkle';
+  s.style.left=(e.clientX-5)+'px';
+  s.style.top=(e.clientY-5)+'px';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),500);
+});
+</script>
 
 </body>
 </html>
